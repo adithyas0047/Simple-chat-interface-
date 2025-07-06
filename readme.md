@@ -18,4 +18,4 @@ Vist: http://localhost:3000/chats
 
 ## Preview
 
-![Simple Chat Interface Screenshot](./Screenshot 2025-07-06 200315.png)
+![App Screenshot](./Screenshot%202025-07-06%20200315.png)
