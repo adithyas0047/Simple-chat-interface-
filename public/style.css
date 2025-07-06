@@ -1,0 +1,29 @@
+* {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  margin: 0 auto;
+  text-align: center;
+  background-color: #a0d2eb;
+}
+
+.chat {
+  background-color: aquamarine;
+  padding: 20px;
+  border-radius: 16px;
+  display: inline-block;
+}
+
+.message {
+  background-color: bisque;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+
+.chatid {
+  font-size: small;
+}

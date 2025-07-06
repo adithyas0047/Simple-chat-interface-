@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container mt-4" style="max-width: 400px">
+      <br />
+      <h2>Edit Chat</h2>
+      <br />
+      <div>
+        <h4>You are editing message of:</h4>
+        <b class="chatid">Chat Id: <%=chat.id%></b>
+        <br />
+        <br />
+        From: <%=chat.from%>
+        <br />
+        <br />
+        To: <%=chat.to%>
+        <br />
+        <br />
+        <form
+          action="http://localhost:3000/chats/<%=chat._id%>?_method=PUT"
+          method="POST"
+          id="new-chat-form"
+        >
+          Edit Message:
+          <textarea
+            name="message"
+            id=""
+            rows="5"
+            cols="30"
+            class="form-control mb-3"
+          >
+<%=chat.message%></textarea
+          >
+          <br />
+          <button class="btn btn-warning">Edit</button>
+        </form>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("new-chat-form");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          Swal.fire({
+            title: "Edit Chat?",
+            text: "Are you sure you want to edit this message?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes, edit it!",
+            cancelButtonText: "Cancel",
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              form.submit(); // this WILL submit now
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

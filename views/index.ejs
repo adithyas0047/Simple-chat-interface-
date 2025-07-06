@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WhatsApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <br />
+    <h3>All Chats</h3>
+    <form action="http://localhost:3000/chats/new" method="GET">
+      <button class="btn btn-success">New Chat</button>
+    </form>
+    <br />
+    <% for(let chat of chats) { %>
+    <div class="chat">
+      <p>From: <i><%=chat.from%></i></p>
+      <div class="message">
+        <p>Message: <%=chat.message%></p>
+        <form
+          action="http://localhost:3000/chats/<%=chat._id%>/edit"
+          method="GET"
+        >
+          <button class="btn btn-warning">Edit</button>
+        </form>
+      </div>
+      <p>Recived By: <i><%=chat.to%></i></p>
+      <hr />
+      <p><%=chat.created_at.toString().split(" ")[4] %></p>
+      <p><%=chat.created_at.toString().split(" ").slice(0,4).join(" ") %></p>
+      <br />
+      <% if(chat.updated_at) {%>
+      <p>
+        Edited at: <%=chat.updated_at.toString().split(" ")[4]%> on
+        <%=chat.updated_at.toString().split(" ").slice(0,4).join(" ")%>
+      </p>
+      <%}%>
+      <form
+        action="http://localhost:3000/chats/<%=chat._id%>?_method=DELETE"
+        method="POST"
+        class="delete-form"
+        data-id="<%=chat._id%>"
+      >
+        <button class="btn btn-danger">Delete Chat</button>
+      </form>
+    </div>
+    <br />
+    <br />
+    <%}%>
+    <script>
+      document.querySelectorAll(".delete-form").forEach((form) => {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault(); // stop form from submitting immediately
+
+          Swal.fire({
+            title: "Are you sure?",
+            text: "This chat will be permanently deleted!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              form.submit(); // if user clicks confirm, submit the form
+            }
+          });
+        });
+      });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

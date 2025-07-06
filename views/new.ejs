@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container mt-4" style="max-width: 400px">
+      <br />
+      <h3>New Chat</h3>
+      <br />
+      <form id="new-chat-form" action="/chats" method="POST">
+        <div class="mb-3">
+          <label for="from">From:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="from"
+            name="from"
+            placeholder="Your name"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="to">To:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="to"
+            name="to"
+            placeholder="Receiver's name"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="message">Message:</label>
+          <textarea
+            class="form-control"
+            id="message"
+            name="message"
+            rows="4"
+            placeholder="Type your message"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("new-chat-form");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          Swal.fire({
+            title: "Submit New Chat?",
+            text: "Are you sure you want to send this message?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes, send it!",
+            cancelButtonText: "Cancel",
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              form.submit(); // this WILL submit now
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
