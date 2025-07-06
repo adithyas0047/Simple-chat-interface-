@@ -14,5 +14,8 @@ A simple chat interface built with Node.js, Express, MongoDB, EJS, and Bootstrap
 npm install
 node index.js
 ```
-
 Vist: http://localhost:3000/chats
+
+## Preview
+
+![Simple Chat Interface Screenshot](./Screenshot 2025-07-06 200315)
